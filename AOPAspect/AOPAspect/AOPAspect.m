@@ -124,7 +124,11 @@ static AOPAspect *aspectManager = NULL;
     IMP implementation;
     
     if ([[aClass instanceMethodSignatureForSelector:aSelector] methodReturnLength] > sizeof(double)) {
+#ifndef __arm64__
         implementation = class_getMethodImplementation_stret([self class], [self extendedSelectorWithClass:aClass selector:aSelector]);
+#else
+        implementation = class_getMethodImplementation([self class], [self extendedSelectorWithClass:aClass selector:aSelector]);
+#endif
     }
     else {
         implementation = class_getMethodImplementation([self class], [self extendedSelectorWithClass:aClass selector:aSelector]);
@@ -140,7 +144,11 @@ static AOPAspect *aspectManager = NULL;
     
     // Check method return type
     if ([[aClass instanceMethodSignatureForSelector:aSelector] methodReturnLength] > sizeof(double)) {
+#ifndef __arm64__
         implementation = (IMP)_objc_msgForward_stret;
+#else
+        implementation = (IMP)_objc_msgForward;
+#endif
     }
     else {
         implementation = (IMP)_objc_msgForward;
@@ -205,7 +213,11 @@ static AOPAspect *aspectManager = NULL;
         
         // Get the original method implementation
         if ([methodSignature methodReturnLength] > sizeof(double)) {
+#ifndef __arm64__
             implementation = class_getMethodImplementation_stret(aClass, aSelector);
+#else
+            implementation = class_getMethodImplementation(aClass, aSelector);
+#endif
         }
         else {
             implementation = class_getMethodImplementation(aClass, aSelector);
