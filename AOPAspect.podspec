@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'AOPAspect'
-  s.version  = '1.0.0'
+  s.version  = '1.0.1'
   s.platform = :ios, '5.0'
   s.summary  = 'Small AOP library for iOS.'
   s.description = 'Small AOP library for iOS.'
