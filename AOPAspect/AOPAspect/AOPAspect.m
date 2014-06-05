@@ -223,10 +223,11 @@ static AOPAspect *aspectManager = NULL;
             implementation = class_getMethodImplementation(aClass, aSelector);
             
             if (implementation) {
-                implementation = imp_implementationWithBlock(^(){
+                IMP inheritedImp = imp_implementationWithBlock(^(){
                     void (*func)(id, SEL) = (void *)implementation;
                     func(self, aSelector);
                 });
+                class_addMethod(aClass, aSelector, inheritedImp,  method_getTypeEncoding(method));
             }
         }
 
