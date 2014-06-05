@@ -221,6 +221,13 @@ static AOPAspect *aspectManager = NULL;
         }
         else {
             implementation = class_getMethodImplementation(aClass, aSelector);
+            
+            if (implementation) {
+                implementation = imp_implementationWithBlock(^(){
+                    void (*func)(id, SEL) = (void *)implementation;
+                    func(self, aSelector);
+                });
+            }
         }
 
         [self interceptMethodWithClass:aClass selector:aSelector];
