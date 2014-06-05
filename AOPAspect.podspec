@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.description = 'Small AOP library for iOS.'
   s.homepage = 'https://github.com/albertodebortoli/AOP-for-Objective-C'
   s.author   = { 'Alberto De Bortoli' => 'albertodebortoli.website@gmail.com' }
-  s.source   = { :git => 'https://github.com/albertodebortoli/AOP-for-Objective-C', :tag => "#{s.version}" }
+  s.source   = { :git => 'https://github.com/dcordero/AOP-for-Objective-C' }
   s.license      = { :type => 'MIT' }
   s.source_files = 'AOPAspect/AOPAspect/*.{h,m}'
   s.requires_arc = true
