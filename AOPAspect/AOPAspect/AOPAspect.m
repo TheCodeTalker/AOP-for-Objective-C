@@ -337,7 +337,9 @@ static AOPAspect *aspectManager = NULL;
         SEL extendedForwardingMethodSelector = [[AOPAspect instance] extendedSelectorWithClass:[self class] selector:@selector(forwardingTargetForSelector:)];
         
         // Invoke the original forwardingTargetForSelector method
-        return method_invoke([AOPAspect instance], class_getInstanceMethod([AOPAspect class], extendedForwardingMethodSelector), aSelector);
+        IMP methodInstance = [AOPAspect instanceMethodForSelector:extendedForwardingMethodSelector];
+        void (*func)(id, SEL) = (void *)methodInstance;
+        func([AOPAspect instance], aSelector);
     }
     
     // Store the current class
