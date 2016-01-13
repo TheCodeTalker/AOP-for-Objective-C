@@ -404,7 +404,6 @@ static AOPAspect *aspectManager = NULL;
 
         do {
             if (interceptorStorage[[self keyWithClass:target selector:aSelector]] != nil) {
-                [aspectManager restoreOriginalMethodWithClass:target selector:aSelector];
                 [aspectManager interceptMethodWithClass:target selector:aSelector];
             }
 
