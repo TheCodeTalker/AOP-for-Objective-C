@@ -3,6 +3,7 @@ AOPAspect is a small aspect oriented programming library for iOS. Licensed under
 **Note:** Current implementation is **not thread safe** for dynamically hooking/unhooking methods on multiple levels of a class hierarchy. Be extra careful.
 
 Because of how the hooking mechanism works, a limitation of the current implementation is that it won't run aspects when calling super on overriden methods (e.g.: -[UIViewController viewDidAppear:animated]); only the leaf call has its aspects processed[1].
+
 For more information on how it works, please check out the article by the original author:
 
 <http://codeshaker.blogspot.com/2012/01/aop-delivered.html>
